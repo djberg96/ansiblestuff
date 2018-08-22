@@ -1,15 +1,21 @@
-- name: install requirements
-  pip:
-    name: "ansible[azure]"
-    state: present
-- name: create security group that allows ssh 
-  azure_rm_securitygroup:
-    resource_group: dberger_resource_group_1
-    name: dberger_nsg1
-    rules:
-      - name: SSH
-        protocol: Tcp
-        destination_port_range: 22
-        access: Allow
-        priority: 101
-        direction: Inbound
+---
+
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: install requirements
+    pip:
+      name: "ansible[azure]"
+      state: present
+  - name: create security group that allows ssh 
+    azure_rm_securitygroup:
+      resource_group: dberger_resource_group_1
+      name: dberger_nsg1
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 101
+          direction: Inbound
