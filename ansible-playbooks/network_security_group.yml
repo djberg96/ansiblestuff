@@ -1,8 +1,8 @@
-- name: 'Install requirements'
+- name: install requirements
   pip:
     name: "ansible[azure]"
     state: present
-- name: 'Create security group that allows SSH'
+- name: create security group that allows ssh 
   azure_rm_securitygroup:
     resource_group: dberger_resource_group_1
     name: dberger_nsg1
