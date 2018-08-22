@@ -8,8 +8,8 @@
       state: present
   - name: create security group that allows ssh 
     azure_rm_securitygroup:
-      resource_group: dberger_resource_group_1
-      name: dberger_nsg1
+      resource_group: "{{ resource_group }}"
+      name: "{{ network_security_group }}"
       rules:
         - name: SSH
           protocol: Tcp
