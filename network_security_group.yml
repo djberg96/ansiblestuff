@@ -1,0 +1,15 @@
+- name: 'Install requirements'
+  pip:
+    name: "ansible[azure]"
+    state: present
+- name: 'Create security group that allows SSH'
+  azure_rm_securitygroup:
+    resource_group: dberger_resource_group_1
+    name: dberger_nsg1
+    rules:
+      - name: SSH
+        protocol: Tcp
+        destination_port_range: 22
+        access: Allow
+        priority: 101
+        direction: Inbound
