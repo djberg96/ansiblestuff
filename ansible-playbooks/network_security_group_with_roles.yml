@@ -1,0 +1,17 @@
+- hosts: localhost
+  connection: local
+  roles:
+    - { role: Azure.azure_modules }
+  gather_facts: False
+  tasks:
+  - name: create security group that allows ssh 
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ network_security_group }}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 101
+          direction: Inbound
