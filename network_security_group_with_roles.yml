@@ -1,7 +1,7 @@
 - hosts: localhost
   connection: local
   roles:
-    - { role: Azure.azure_modules }
+    - { role: azure.azure_modules }
   gather_facts: False
   tasks:
   - name: create security group that allows ssh 
