@@ -3,10 +3,10 @@
   gather_facts: False
   tasks:
   - name: install requirements
-    shell:
-      source /var/lib/awx/venv/ansible/bin/activate && \
-      umask 0022 \
-      pip install ansible[azure] --ignore-installed \
+    shell: |
+      . /var/lib/awx/venv/ansible/bin/activate
+      umask 0022
+      pip install ansible[azure] --ignore-installed
       deactivate
   - name: create security group that allows ssh 
     azure_rm_securitygroup:
