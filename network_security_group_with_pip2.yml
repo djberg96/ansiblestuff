@@ -1,0 +1,23 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: install requirements
+    pip:
+      name: ansible[azure]
+      umask: '0022'
+      state: present
+      extra_args: --ignore-installed
+      virtualenv: /var/lib/awx/venv/ansible
+      virtualenv_command: virtualenv --always-copy
+  - name: create security group that allows ssh 
+    azure_rm_securitygroup:
+      resource_group: "{{ resource_group }}"
+      name: "{{ network_security_group }}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 101
+          direction: Inbound
