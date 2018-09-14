@@ -2,10 +2,6 @@
   connection: local
   gather_facts: False
   tasks:
-  #- name: install requirements
-  #  pip:
-  #    name: "ansible[azure]"
-  #    state: present
   - name: create security group that allows ssh 
     azure_rm_securitygroup:
       resource_group: "{{ resource_group }}"
